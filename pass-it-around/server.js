@@ -36,6 +36,41 @@ app.get('/:bottles', (req, res) => {
     }
 })
 
+// Fibonacci
+const fibonacci = (num) => {
+    const fibnum = (1+(Math.sqrt(5))) / 2
+    const num1 = Math.pow(fibnum, num)
+    const num2 = Math.pow((1 - fibnum), num)
+    return(Math.round((num1 - num2) / Math.sqrt(5)))
+}
+
+//iterate over sequential fibonacci numbers and returns if number is fibonacci number
+const testfib = (num) => {
+    let i = 1
+    let fib = 0
+    let limit = num
+
+    while (fib < limit) {
+        fib = fibonacci(i)
+        i++
+        if (fib == num) {
+            console.log(fib + " is a fib")
+            return true;
+        } else {
+            console.log(fib + " is not a fib")
+        }
+    }
+}
+
+app.get('/fibonacci/:number', (req,res) => {
+    let number = req.params.number
+    if (testfib(number) == true){
+        res.send(`<i>${number}</i><br><h1>is Fib</h1>`)
+    } else {
+        res.send(`<h1><i>${number}</i><br>is NOT Fib</h1>`)
+    }
+})
+
 
 app.listen(port, () => {
     console.log("Express server is listening on port", port)
