@@ -43,18 +43,6 @@ app.get('/magic/:question', (req,res) => {
     
 })
 
-//Fibonacci
-
-app.get('/magic/:question', (req,res) => {
-    let question = req.params.question
-    //bitwise operator - faster for under 16b but has problems with neg
-    let response = eightBitReponse[~~(Math.random() * eightBitReponse.length)]
-    res.send(`<i>${question}</i><br><h1>${response}</h1>`)
-    
-    
-})
-
-
 app.listen(port, () => {
     console.log("Express server is listening on port", port)
 })
